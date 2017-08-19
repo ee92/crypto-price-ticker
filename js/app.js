@@ -1,5 +1,6 @@
 var coins = ["ARK", "BCH", "BSD", "CHC", "DASH", "DCR", "DOGE", "DOT", "ETC", "ETH", "HUSH", "INPAY", "NAV", "PIVX", "SKY", "UNO", "WAVES", "XMR", "ZEC"]
 var coin = coins[Math.floor(Math.random()*coins.length)];
+var position = 'buy';
 var usdt;
 var btc;
 var ltc;
@@ -19,6 +20,7 @@ $('#button').click(() => {
 	btc = null;
 	ltc = null;
 	coin = $('#symbols').val();
+	position = $("input[name='position']:checked").val();
 	updateDOM();
 });
 
@@ -41,7 +43,11 @@ setInterval(() => {
 	$.ajax({
 	    url: `https://www.cryptopia.co.nz/api/GetMarket/${coin}_USDT`,
 	    success: (data) => {
-	      usdt = data.Data.AskPrice;
+				if (position == 'buy'){
+					usdt = data.Data.AskPrice;
+				} else {
+					usdt = data.Data.BidPrice;
+				}
 	    }
 	})
 }, 1000);
@@ -51,7 +57,11 @@ setInterval(() => {
 	$.ajax({
 	    url: `https://www.cryptopia.co.nz/api/GetMarket/${coin}_BTC`,
 	    success: (data) => {
-	      btc = data.Data.AskPrice;
+				if (position == 'buy'){
+					btc = data.Data.AskPrice;
+				} else {
+					btc = data.Data.BidPrice;
+				}
 	    }
 	})
 }, 1000);
@@ -61,7 +71,11 @@ setInterval(() => {
 	$.ajax({
 	    url: `https://www.cryptopia.co.nz/api/GetMarket/${coin}_LTC`,
 	    success: (data) => {
-	      ltc = data.Data.AskPrice;
+				if (position == 'buy'){
+					ltc = data.Data.AskPrice;
+				} else {
+					ltc = data.Data.BidPrice;
+				}
 	    }
 	})
 }, 1000);
