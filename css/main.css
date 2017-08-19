@@ -1,7 +1,10 @@
-body {
-	background: url('../img/net3.jpg') no-repeat center center fixed;
-  background-size: cover;
-	margin: 0px;
+#background {
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-5000;
 }
 
 #ticker {
@@ -15,7 +18,7 @@ body {
   overflow: auto;
 }
 
-.header{
+.header {
 	background-color: rgba(0, 0, 0, 0.7);
 	margin: 0;
 	padding: 20px;
@@ -42,4 +45,10 @@ body {
 
 *:focus {
     outline: none;
+}
+
+@media screen and (max-width:420px) {
+  body{
+		max-width: 420px;
+	}
 }
